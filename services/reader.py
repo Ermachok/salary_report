@@ -1,10 +1,9 @@
 import logging
 from dataclasses import dataclass
 from typing import List
+from config import RATE_FIELDS
 
 logger = logging.getLogger(__name__)
-
-RATE_FIELDS = {"hourly_rate", "rate", "salary"}
 
 
 @dataclass
