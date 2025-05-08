@@ -6,7 +6,6 @@ from services.reader import read_employees_from_files
 from services.reports import get_report_generator
 from services.formatter import format_payout_report
 
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
@@ -15,6 +14,12 @@ logger = logging.getLogger(__name__)
 
 
 def parse_args():
+    """
+    Parse command-line arguments for the report generation script.
+
+    Returns:
+        argparse.Namespace: Parsed arguments including file paths and report type.
+    """
     parser = argparse.ArgumentParser(description="Generate employee reports from CSV files.")
     parser.add_argument("files", nargs="+", help="CSV files with employee data")
     parser.add_argument("--report", required=True, help="Type of report to generate (e.g., payout)")
@@ -22,6 +27,12 @@ def parse_args():
 
 
 def main():
+    """
+    Entry point for the script.
+
+    Validates input files, reads employee data, selects a report generator,
+    generates the report, and prints the formatted output.
+    """
     args = parse_args()
 
     valid_files = []

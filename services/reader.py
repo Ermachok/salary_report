@@ -8,6 +8,9 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class Employee:
+    """
+    Data class representing an employee record.
+    """
     id: int
     email: str
     name: str
@@ -17,6 +20,18 @@ class Employee:
 
 
 def read_employees_from_files(file_paths: List[str]) -> List[Employee]:
+    """
+    Read and parse employee data from a list of CSV files.
+
+    Args:
+        file_paths (List[str]): A list of paths to CSV files containing employee data.
+
+    Returns:
+        List[Employee]: A list of Employee objects parsed from the provided files.
+
+    Raises:
+        ValueError: If a required rate field is missing from any file.
+    """
     all_employees = []
 
     for path in file_paths:
