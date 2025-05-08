@@ -1,9 +1,22 @@
 from collections import defaultdict
-from typing import List, Dict, Any
+from typing import Any, Dict, List
+
 from .reader import Employee
 
 
 def generate_payout_report(employees: List[Employee]) -> Dict[str, Any]:
+    """
+    Generate a payout report for a list of employees, grouped by department.
+
+    Args:
+        employees (List[Employee]): A list of Employee objects.
+
+    Returns:
+        Dict[str, Any]: A dictionary where each key is a department name and the value is:
+                        - a list of employees with their hours, rates, and payouts,
+                        - total hours worked for the department,
+                        - total payout amount for the department.
+    """
     report = {}
     departments = defaultdict(list)
 
@@ -13,7 +26,7 @@ def generate_payout_report(employees: List[Employee]) -> Dict[str, Any]:
             "name": emp.name,
             "hours_worked": emp.hours_worked,
             "hourly_rate": emp.hourly_rate,
-            "payout": payout
+            "payout": payout,
         }
         departments[emp.department].append(emp_dict)
 
