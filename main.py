@@ -1,9 +1,11 @@
 import argparse
 import sys
+import os
 import logging
 from services.reader import read_employees_from_files
 from services.reports import get_report_generator
 from services.formatter import format_payout_report
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -22,11 +24,19 @@ def parse_args():
 def main():
     args = parse_args()
 
-    try:
-        employees = read_employees_from_files(args.files)
-    except FileNotFoundError as e:
-        logger.error(f"File not found: {e.filename}")
+    valid_files = []
+    for path in args.files:
+        if os.path.isfile(path):
+            valid_files.append(path)
+        else:
+            logger.warning(f"File not found or is not a file: {path}")
+
+    if not valid_files:
+        logger.error("No valid input files provided.")
         sys.exit(1)
+
+    try:
+        employees = read_employees_from_files(valid_files)
     except Exception as e:
         logger.exception("Failed to read files")
         sys.exit(1)
