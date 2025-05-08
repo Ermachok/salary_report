@@ -1,14 +1,14 @@
 import argparse
-import sys
-import os
 import logging
+import os
+import sys
+
+from services.formatter import format_payout_report
 from services.reader import read_employees_from_files
 from services.reports import get_report_generator
-from services.formatter import format_payout_report
 
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s"
+    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s"
 )
 logger = logging.getLogger(__name__)
 
@@ -20,9 +20,13 @@ def parse_args():
     Returns:
         argparse.Namespace: Parsed arguments including file paths and report type.
     """
-    parser = argparse.ArgumentParser(description="Generate employee reports from CSV files.")
+    parser = argparse.ArgumentParser(
+        description="Generate employee reports from CSV files."
+    )
     parser.add_argument("files", nargs="+", help="CSV files with employee data")
-    parser.add_argument("--report", required=True, help="Type of report to generate (e.g., payout)")
+    parser.add_argument(
+        "--report", required=True, help="Type of report to generate (e.g., payout)"
+    )
     return parser.parse_args()
 
 

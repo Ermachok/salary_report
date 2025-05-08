@@ -1,6 +1,7 @@
 import logging
 from dataclasses import dataclass
 from typing import List
+
 from config import RATE_FIELDS
 
 logger = logging.getLogger(__name__)
@@ -11,6 +12,7 @@ class Employee:
     """
     Data class representing an employee record.
     """
+
     id: int
     email: str
     name: str

@@ -1,4 +1,5 @@
 from typing import Callable, Dict, List
+
 from .payout import generate_payout_report
 from .reader import Employee
 
@@ -6,6 +7,7 @@ from .reader import Employee
 _REPORTS: Dict[str, Callable[[List[Employee]], dict]] = {
     "payout": generate_payout_report,
 }
+
 
 def get_report_generator(report_type: str) -> Callable[[List[Employee]], dict]:
     """

@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Any, Dict
 
 
 def format_report(report_type: str, data: Dict[str, Any]) -> str:
@@ -30,8 +30,10 @@ def format_payout_report(data: Dict[str, Any]) -> str:
     Returns:
         str: A formatted string representing the payout report.
     """
-    lines = [f"{'Department':<20} {'Name':<20} {'Hours Worked':<12} {'Hourly Rate':<12} {'Payout':<10}",
-             f"{'-' * 20} {'-' * 20} {'-' * 12} {'-' * 12} {'-' * 10}"]
+    lines = [
+        f"{'Department':<20} {'Name':<20} {'Hours Worked':<12} {'Hourly Rate':<12} {'Payout':<10}",
+        f"{'-' * 20} {'-' * 20} {'-' * 12} {'-' * 12} {'-' * 10}",
+    ]
 
     for department, info in data.items():
 
@@ -44,7 +46,9 @@ def format_payout_report(data: Dict[str, Any]) -> str:
 
             lines.append(f"{'':<20} {name:<20} {hours:<12} {rate:<12} ${payout:<10}")
 
-        lines.append(f"\n{'':<20} {'Total hours:':<10} {info['total_hours']:<12} {'Total payment:':<10} ${info['total_payout']:<10}")
+        lines.append(
+            f"\n{'':<20} {'Total hours:':<10} {info['total_hours']:<12} {'Total payment:':<10} ${info['total_payout']:<10}"
+        )
         lines.append("")
 
     return "\n".join(lines)

@@ -1,5 +1,6 @@
 from collections import defaultdict
-from typing import List, Dict, Any
+from typing import Any, Dict, List
+
 from .reader import Employee
 
 
@@ -25,7 +26,7 @@ def generate_payout_report(employees: List[Employee]) -> Dict[str, Any]:
             "name": emp.name,
             "hours_worked": emp.hours_worked,
             "hourly_rate": emp.hourly_rate,
-            "payout": payout
+            "payout": payout,
         }
         departments[emp.department].append(emp_dict)
 
