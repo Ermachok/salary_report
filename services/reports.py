@@ -3,7 +3,6 @@ from typing import Callable, Dict, List
 from .payout import generate_payout_report
 from .reader import Employee
 
-# Mapping of report types to their corresponding generator functions
 _REPORTS: Dict[str, Callable[[List[Employee]], dict]] = {
     "payout": generate_payout_report,
 }
