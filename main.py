@@ -3,7 +3,7 @@ import logging
 import os
 import sys
 
-from services.formatter import format_payout_report
+from services.formatter import format_report
 from services.reader import read_employees_from_files
 from services.reports import get_report_generator
 
@@ -65,7 +65,7 @@ def main():
 
     report = generator(employees)
     logger.info(f"Report '{report_type}' generated successfully")
-    print(format_payout_report(report))
+    print(format_report(report_type, report))
 
 
 if __name__ == "__main__":
